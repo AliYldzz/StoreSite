@@ -1,22 +1,27 @@
 
 /*------------------------------------*/
-let productList=[];
+import products from "./products-list.json" assert { type: "json" };
+// console.log(products); // Check the console to see the products array
+
+// let productList=[];
 
 const toggleModel =()=>{
     const basketmodelEl = document.querySelector(".basket-model");
     basketmodelEl.classList.toggle("active");
 };
 
-const getUrun = () =>{
-    fetch("./products-list.json")
-    .then(res => res.json())
-    .then((products) => (productList = products)) ;
-};
+/* 
+  const getUrun = () =>{
+      fetch("./products-list.json")
+      .then(res => res.json())
+      .then((products) => (productList = products)) ;
+  };
+*/
 
 const createProductItemHtml = () => {
-   const productListEl= document.querySelector(".product_List");
-   let productListHtml ="";
-   productList.forEach(product =>{
+  const productList = document.querySelector(".product_List");
+  let productListHtml = "";
+  products.forEach((product) => { // Iterate over the 'products' array, not 'productList'
     productListHtml += `<section style="border: solid black; " class="product_List col-9">
     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner">
@@ -49,6 +54,8 @@ const createProductItemHtml = () => {
   </section>`;    
 
 });
+
+productList.innerHTML = productListHtml; // Append the HTML to the product list container
 
 };
 setTimeout(()=>{
